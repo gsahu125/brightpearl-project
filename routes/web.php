@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebhookController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Brightpearl_dataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +28,15 @@ require __DIR__.'/auth.php';
 //http://127.0.0.1:8000/webhook/product_create
 Route::any('webhook/product_create',[WebhookController::class,'testWebhook']);
 
-Route::get('getProducts',[ProductController::class,'getProducts']);
-Route::get('getBrands',[ProductController::class,'getBrands']);
-
+Route::get('getBrands',[Brightpearl_dataController::class,'getBrands']);
+Route::get('getCategories',[Brightpearl_dataController::class,'getBrightpearlCategories']);
+Route::get('getCollections',[Brightpearl_dataController::class,'getCollections']);
+Route::get('getOptions',[Brightpearl_dataController::class,'getOptions']);
+Route::get('getProductGroups',[Brightpearl_dataController::class,'getProductGroups']);
+Route::get('getProductGroups',[Brightpearl_dataController::class,'getProductGroups']);
+Route::get('getproducts',[Brightpearl_dataController::class,'getproducts']);
+Route::get('getProductTypes',[Brightpearl_dataController::class,'getProductTypes']);
+Route::get('getSeasons',[Brightpearl_dataController::class,'getSeasons']);
+Route::get('getSubCategories',[Brightpearl_dataController::class,'getSubCategory']);
+Route::get('getSuppliers',[Brightpearl_dataController::class,'getSuppliers']);
+Route::get('getTaxCodes',[Brightpearl_dataController::class,'getTaxCodes']);
