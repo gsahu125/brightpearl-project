@@ -8,11 +8,24 @@ use Illuminate\Support\Facades\Http;
 
 class WebhookController extends Controller
 {
-    public function testWebhook(Request $request)
+    //functions for brightpearl events
+    public function productCreated(Request $request)
     {   
-        $txt = "Hello world! this web hook is working";
+        $txt = "NewProduct created";
         Storage::put('testwebhook.txt', $txt);
     }
 
+    public function productDestroyed(Request $request)
+    {
+        //delete product from db by request ID
+    }
+
+    public function productModified(Request $request)
+    {
+        $txt = "Product Modified";
+        Storage::put('testwebhook.txt', $txt);
+    }
+
+    
 
 }

@@ -25,9 +25,15 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-//http://127.0.0.1:8000/webhook/product_create
-Route::any('webhook/product_create',[WebhookController::class,'testWebhook']);
+//webhooks setup for brightpearl events
+//http://127.0.0.1:8000/webhook/product_create   id - 467 ,469, 470
+Route::any('webhook/product_create',[WebhookController::class,'productCreated']);
+Route::any('webhook/product_destroyed',[WebhookController::class,'productDestroyed']);
+Route::any('webhook/product_modified',[WebhookController::class,'productModified']);
 
+
+
+//Routes for fetch data first time 
 Route::get('getBrands',[Brightpearl_dataController::class,'getBrands']);
 Route::get('getCategories',[Brightpearl_dataController::class,'getBrightpearlCategories']);
 Route::get('getCollections',[Brightpearl_dataController::class,'getCollections']);

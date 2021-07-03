@@ -1,0 +1,37 @@
+﻿html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: "Lato";
+  color: #2c3f4c;
+  background-color: #ffffff;
+}
+
+a {
+  color: #96c03d;
+  text-decoration: none;
+}
+
+.example {
+  border-bottom: 1px solid #e6e6e6;
+  padding: 0 10px;
+}
+
+.example h2 {
+  width: 90%;
+  color: #2c3f4c;
+}
+
+.demo-vertical {
+  display: flex;
+}
+
+@media only screen and (max-width: 768px) {
+  .demo-vertical {
+    display: block;
+  }
+}
+
+/*# sourceMappingURL=demo.css.map */
