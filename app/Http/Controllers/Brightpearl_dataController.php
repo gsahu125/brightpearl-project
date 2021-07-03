@@ -29,6 +29,18 @@ class Brightpearl_dataController extends Controller
         ])->get('https://ws-use.brightpearl.com/public-api/apiworxtest3/product-service/brand');
 
         $brandArray = $response->json();
+        foreach($brandArray as $data)
+        {
+            $find = Brand::find($data['id']);
+            if(!$find){
+                //
+            }
+            else
+            {
+                //
+            }
+        }
+        
         //print_r($brandArray['response']);
         Brand::insert($brandArray['response']);
         return "Record inserted";
@@ -248,43 +260,29 @@ class Brightpearl_dataController extends Controller
         
         $taxCodeArray = $response->json();
         $dataArray  = $taxCodeArray['response']['results'];
+        array_walk($dataArray, function (& $item) {
+            $item['contactId'] = $item[0];
+            $item['primaryEmail'] = $item[1];
+            $item['secondaryEmail'] = $item[2];
+            $item['firstName'] = $item[3];
+            $item['lastName'] = $item[4];
+            $item['isSupplier'] = $item[5];
+            $item['nominalCode'] = $item[6];
+            $item['title'] = $item[7];
+            $item['companyName'] = $item[8];
+            $item['pri'] = $item[9];
+            $item['mob'] = $item[10];
+            unset($item[0],$item[1],$item[2],$item[3],$item[4],$item[5],$item[6],$item[7],$item[8],$item[9],$item[10]);
+         });
+
+        // print_r($dataArray);
+        // die();
+
+        if(Supplier::insert($dataArray))
+        {
+            echo"Suppliers inserted";
+        }
        
-        print_r($dataArray);
-        die();
-
-        $SuppliersList= [];
-       
-        foreach($dataArray as $data)
-        {
-            $SuppliersList += [
-                'contactId' => $data,
-                'primaryEmail' => $data,
-                'secondaryEmail' => $data,
-                'firstName' => $data,
-                'lastName' => $data,
-                'isSupplier' => $data,
-                'nominalCode' => $data,
-                'title' => $data,
-                'companyName' => $data,
-                'pri' => $data,
-                'mob' => $data
-            ];
-            
-        }
-
-        print_r($SuppliersList);
-        die();
-
-
-        if(Supplier::insert($SuppliersList))
-        {
-            echo"Tax Code inserted";
-        }
-        else
-        {
-            echo"there is something went wrong";
-        }
-      
 
     }
     public function getTaxCodes()

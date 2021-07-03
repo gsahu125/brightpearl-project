@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebhookController;
 use App\Http\Controllers\Brightpearl_dataController;
-
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,3 +46,7 @@ Route::get('getSeasons',[Brightpearl_dataController::class,'getSeasons']);
 Route::get('getSubCategories',[Brightpearl_dataController::class,'getSubCategory']);
 Route::get('getSuppliers',[Brightpearl_dataController::class,'getSuppliers']);
 Route::get('getTaxCodes',[Brightpearl_dataController::class,'getTaxCodes']);
+
+
+//Routes for view
+Route::resource('products', ProductController::class);
