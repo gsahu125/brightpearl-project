@@ -4,16 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebhookController;
 use App\Http\Controllers\Brightpearl_dataController;
 use App\Http\Controllers\ProductController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
+use App\Http\Resources\UserResource;
+use App\Models\User;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,7 +20,7 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 //webhooks setup for brightpearl events
-//http://127.0.0.1:8000/webhook/product_create   id - 467 ,469, 470
+//http://127.0.0.1:8000/webhook/product_create  
 Route::any('webhook/product_create',[WebhookController::class,'productCreated']);
 Route::any('webhook/product_destroyed',[WebhookController::class,'productDestroyed']);
 Route::any('webhook/product_modified',[WebhookController::class,'productModified']);
@@ -50,3 +44,9 @@ Route::get('getTaxCodes',[Brightpearl_dataController::class,'getTaxCodes']);
 
 //Routes for view
 Route::resource('products', ProductController::class);
+
+
+
+Route::get('/user/{id}', function ($id) {
+    return new UserResource(User::findOrFail($id));
+});

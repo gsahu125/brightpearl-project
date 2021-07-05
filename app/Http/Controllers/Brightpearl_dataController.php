@@ -20,13 +20,17 @@ use Illuminate\Support\Arr;
 
 class Brightpearl_dataController extends Controller
 {
+    private $api_uri ='https://ws-use.brightpearl.com/public-api/apiworxtest3/';
+    private $bp_account_token = '2O9fTexCIUOpRRq2R3JUcZ42diNKBeFd7vgmZe0sJxs=';
+    private $bp_app_ref = 'apiworxtest3_1111';
+
     public function getBrands()
     {
         $response = Http::withHeaders([
-            'brightpearl-account-token' => '2O9fTexCIUOpRRq2R3JUcZ42diNKBeFd7vgmZe0sJxs=',
-            'brightpearl-app-ref' => 'apiworxtest3_1111',
+            'brightpearl-account-token' => $this->bp_account_token,
+            'brightpearl-app-ref' => $this->bp_app_ref,
             'content-type' => 'application/json'
-        ])->get('https://ws-use.brightpearl.com/public-api/apiworxtest3/product-service/brand');
+        ])->get($this->api_uri.'product-service/brand');
 
         $brandArray = $response->json();
         foreach($brandArray as $data)
@@ -50,10 +54,10 @@ class Brightpearl_dataController extends Controller
     public function getBrightpearlCategories()
     {
         $response = Http::withHeaders([
-            'brightpearl-account-token' => '2O9fTexCIUOpRRq2R3JUcZ42diNKBeFd7vgmZe0sJxs=',
-            'brightpearl-app-ref' => 'apiworxtest3_1111',
+            'brightpearl-account-token' => $this->bp_account_token,
+            'brightpearl-app-ref' => $this->bp_app_ref,
             'content-type' => 'application/json'
-        ])->get('https://ws-use.brightpearl.com/public-api/apiworxtest3/product-service/brightpearl-category');
+        ])->get($this->api_uri.'product-service/brightpearl-category');
         
         $categoryArray = $response->json();
         $dataArray  = $categoryArray['response'];
@@ -87,10 +91,10 @@ class Brightpearl_dataController extends Controller
     public function getOptions()
     {   
         $response = Http::withHeaders([
-            'brightpearl-account-token' => '2O9fTexCIUOpRRq2R3JUcZ42diNKBeFd7vgmZe0sJxs=',
-            'brightpearl-app-ref' => 'apiworxtest3_1111',
+            'brightpearl-account-token' => $this->bp_account_token,
+            'brightpearl-app-ref' => $this->bp_app_ref,
             'content-type' => 'application/json'
-        ])->get('https://ws-use.brightpearl.com/public-api/apiworxtest3/product-service/option');
+        ])->get($this->api_uri.'product-service/option');
 
         $optionsArray = $response->json();
         $dataArray  = $optionsArray['response'];
@@ -101,10 +105,10 @@ class Brightpearl_dataController extends Controller
     public function getOptionValues()
     {
         $response = Http::withHeaders([
-            'brightpearl-account-token' => '2O9fTexCIUOpRRq2R3JUcZ42diNKBeFd7vgmZe0sJxs=',
-            'brightpearl-app-ref' => 'apiworxtest3_1111',
+            'brightpearl-account-token' => $this->bp_account_token,
+            'brightpearl-app-ref' => $this->bp_app_ref,
             'content-type' => 'application/json'
-        ])->get('https://ws-use.brightpearl.com/public-api/apiworxtest3/product-service/option');
+        ])->get($this->api_uri.'product-service/option');
 
         $optionsValueArray = $response->json();
         $dataArray  = $optionsValueArray['response'];
@@ -120,10 +124,10 @@ class Brightpearl_dataController extends Controller
     public function getproducts()
     {   
         $response = Http::withHeaders([
-            'brightpearl-account-token' => '2O9fTexCIUOpRRq2R3JUcZ42diNKBeFd7vgmZe0sJxs=',
-            'brightpearl-app-ref' => 'apiworxtest3_1111',
+            'brightpearl-account-token' => $this->bp_account_token,
+            'brightpearl-app-ref' => $this->bp_app_ref,
             'content-type' => 'application/json'
-        ])->get('https://ws-use.brightpearl.com/public-api/apiworxtest3/product-service/product/21113-21115');
+        ])->get($this->api_uri.'product-service/product/21113-21115');
         
         $productArray = $response->json();
         $dataArray  = $productArray['response'];
@@ -149,11 +153,9 @@ class Brightpearl_dataController extends Controller
                 'stock_stockTracked' => isset($data['stock']['stockTracked'])? $data['stock']['stockTracked'] : '',
                 'stock_dimensions' => isset($data['stock']['dimensions']['length'])? $data['stock']['dimensions']['length'] : '',
                 'financialDetails_taxCode_id' => isset($data['financialDetails']['taxCode_id'])? $data['financialDetails']['taxCode_id'] : '',
-                
                 'salesChannels_salesChannelName' => isset($data['salesChannels'][0]['salesChannelName'])? $data['salesChannels'][0]['salesChannelName'] : '',
                 'salesChannels_productName' => isset($data['salesChannels'][0]['productName'])? $data['salesChannels'][0]['productName'] : '',
                 'salesChannels_productCondition' => isset($data['salesChannels'][0]['productCondition'])? $data['salesChannels'][0]['productCondition'] : '',
-                
                 'salesChannels_categories_categoryCode' => isset($data['salesChannels'][0]['categories'][0]['categoryCode'])? $data['salesChannels'][0]['categories'][0]['categoryCode'] : '',
                 'salesChannels_description_text' => isset($data['salesChannels'][0]['description']['text'])? $data['salesChannels'][0]['description']['text'] : '',
                 'salesChannels_shortDescription_text' => isset($data['salesChannels'][0]['shortDescription']['text'])? $data['salesChannels'][0]['shortDescription']['text'] : '',
@@ -187,10 +189,10 @@ class Brightpearl_dataController extends Controller
     public function getProductTypes()
     {
         $response = Http::withHeaders([
-            'brightpearl-account-token' => '2O9fTexCIUOpRRq2R3JUcZ42diNKBeFd7vgmZe0sJxs=',
-            'brightpearl-app-ref' => 'apiworxtest3_1111',
+            'brightpearl-account-token' => $this->bp_account_token,
+            'brightpearl-app-ref' => $this->bp_app_ref,
             'content-type' => 'application/json'
-        ])->get('https://ws-use.brightpearl.com/public-api/apiworxtest3/product-service/product-type/');
+        ])->get($this->api_uri.'product-service/product-type/');
         
         $productTypeArray = $response->json();
         $dataArray  = $productTypeArray['response'];
@@ -214,10 +216,10 @@ class Brightpearl_dataController extends Controller
     public function getSeasons()
     {
         $response = Http::withHeaders([
-            'brightpearl-account-token' => '2O9fTexCIUOpRRq2R3JUcZ42diNKBeFd7vgmZe0sJxs=',
-            'brightpearl-app-ref' => 'apiworxtest3_1111',
+            'brightpearl-account-token' => $this->bp_account_token,
+            'brightpearl-app-ref' => $this->bp_app_ref,
             'content-type' => 'application/json'
-        ])->get('https://ws-use.brightpearl.com/public-api/apiworxtest3/product-service/season/');
+        ])->get($this->api_uri.'product-service/season/');
         $seasonArray = $response->json();
         $dataArray  = $seasonArray['response'];
 
@@ -253,10 +255,10 @@ class Brightpearl_dataController extends Controller
     public function getSuppliers()
     {
         $response = Http::withHeaders([
-            'brightpearl-account-token' => '2O9fTexCIUOpRRq2R3JUcZ42diNKBeFd7vgmZe0sJxs=',
-            'brightpearl-app-ref' => 'apiworxtest3_1111',
+            'brightpearl-account-token' => $this->bp_account_token,
+            'brightpearl-app-ref' => $this->bp_app_ref,
             'content-type' => 'application/json'
-        ])->get('https://ws-use.brightpearl.com/public-api/apiworxtest3/contact-service/contact-search?columns=contactId,primaryEmail,secondaryEmail,firstName,lastName,isSupplier,nominalCode,title,companyName,pri,mob&isSupplier=true');
+        ])->get($this->api_uri.'contact-service/contact-search?columns=contactId,primaryEmail,secondaryEmail,firstName,lastName,isSupplier,nominalCode,title,companyName,pri,mob&isSupplier=true');
         
         $taxCodeArray = $response->json();
         $dataArray  = $taxCodeArray['response']['results'];
@@ -288,10 +290,10 @@ class Brightpearl_dataController extends Controller
     public function getTaxCodes()
     {
         $response = Http::withHeaders([
-            'brightpearl-account-token' => '2O9fTexCIUOpRRq2R3JUcZ42diNKBeFd7vgmZe0sJxs=',
-            'brightpearl-app-ref' => 'apiworxtest3_1111',
+            'brightpearl-account-token' => $this->bp_account_token,
+            'brightpearl-app-ref' => $this->bp_app_ref,
             'content-type' => 'application/json'
-        ])->get('https://ws-use.brightpearl.com/public-api/apiworxtest3/accounting-service/tax-code?columns=id,code,description,rate');
+        ])->get($this->api_uri.'accounting-service/tax-code?columns=id,code,description,rate');
         
         $taxCodeArray = $response->json();
         $dataArray  = $taxCodeArray['response'];
